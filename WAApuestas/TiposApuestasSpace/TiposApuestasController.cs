@@ -9,31 +9,32 @@ namespace WAApuestas.TiposApuestasSpace
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TipoApuestasController : ControllerBase
+    public class TiposApuestasController : ControllerBase
     {
-        private readonly GestionApuestasDbContext _context;
-
-        public TipoApuestasController(GestionApuestasDbContext context)
+        private readonly ITiposApuestasService _tiposApuestasService;
+        public TiposApuestasController(ITiposApuestasService tiposApuestasService)
         {
-            _context = context;
+            _tiposApuestasService = tiposApuestasService;
         }
 
         // GET: api/TipoApuestas
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TipoApuestas>>> GetTiposApuestas()
+        public async Task<IEnumerable<TipoApuestas>> GetTiposApuestas()
         {
-            return await _context.TiposApuestas.ToListAsync();
+            return await _tiposApuestasService.GetTiposApuestas();
         }
 
         // GET: api/TipoApuestas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TipoApuestas>> GetTipoApuestas(int id)
         {
-            var tipoApuestas = await _context.TiposApuestas.FindAsync(id);
-
-            if (tipoApuestas == null)
+            TipoApuestas tipoApuestas;
+            try {
+                tipoApuestas = await _tiposApuestasService.GetTipoApuestas(id);
+            }
+            catch (GestionApuestasException e)
             {
-                return NotFound();
+                return NotFound(e.Message);
             }
 
             return tipoApuestas;
@@ -50,15 +51,14 @@ namespace WAApuestas.TiposApuestasSpace
                 return BadRequest();
             }
 
-            _context.Entry(tipoApuestas).State = EntityState.Modified;
 
             try
             {
-                await _context.SaveChangesAsync();
+                await _tiposApuestasService.PutTipoApuestas(tipoApuestas);
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!TipoApuestasExists(id))
+                if (! _tiposApuestasService.GetTiposApuestas().Result.Any(e => e.Id == id))
                 {
                     return NotFound();
                 }
@@ -77,31 +77,26 @@ namespace WAApuestas.TiposApuestasSpace
         [HttpPost]
         public async Task<ActionResult<TipoApuestas>> PostTipoApuestas(TipoApuestas tipoApuestas)
         {
-            _context.TiposApuestas.Add(tipoApuestas);
-            await _context.SaveChangesAsync();
+            var tipoApuesta = await _tiposApuestasService.PostTipoApuestas(tipoApuestas);
 
-            return CreatedAtAction("GetTipoApuestas", new { id = tipoApuestas.Id }, tipoApuestas);
+            return CreatedAtAction("GetTipoApuestas", new { id = tipoApuesta.Id }, tipoApuesta);
         }
 
         // DELETE: api/TipoApuestas/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<TipoApuestas>> DeleteTipoApuestas(int id)
         {
-            var tipoApuestas = await _context.TiposApuestas.FindAsync(id);
-            if (tipoApuestas == null)
+            TipoApuestas tipoApuestas;
+            try
             {
-                return NotFound();
+                tipoApuestas = await _tiposApuestasService.DeleteTipoApuestas(id);
+            }
+            catch (GestionApuestasException e)
+            {
+                return NotFound(e.Message);
             }
 
-            _context.TiposApuestas.Remove(tipoApuestas);
-            await _context.SaveChangesAsync();
-
             return tipoApuestas;
-        }
-
-        private bool TipoApuestasExists(int id)
-        {
-            return _context.TiposApuestas.Any(e => e.Id == id);
         }
     }
 }

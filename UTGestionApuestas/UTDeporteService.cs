@@ -62,9 +62,9 @@ namespace UTGestionApuestas
 
             mockDeporteRepository.Setup(tp => tp.GetDeporte(idALeer)).ReturnsAsync(deporteLeido);
 
-            var accionDevuelta = await cut.GetDeporte(idALeer);
+            var deporteDevuelto = await cut.GetDeporte(idALeer);
 
-            Assert.AreEqual(accionDevuelta, deporteLeido);
+            Assert.AreEqual(deporteDevuelto, deporteLeido);
             mockDeporteRepository.Verify(r => r.GetDeporte(idALeer), Times.Once);
         }
     }

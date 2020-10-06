@@ -75,9 +75,9 @@ namespace UTGestionApuestas
 
             mockTipoEventosRepository.Setup(tp => tp.TipoEventoExists(idALeer)).ReturnsAsync(true);
 
-            var accionDevuelta = await cut.GetTipoEvento(idALeer);
+            var tipoEventoDevuelto = await cut.GetTipoEvento(idALeer);
 
-            Assert.AreEqual(accionDevuelta, tipoEventoLeido);
+            Assert.AreEqual(tipoEventoDevuelto, tipoEventoLeido);
             mockTipoEventosRepository.Verify(r => r.GetTipoEvento(idALeer), Times.Once);
         }
         [TestMethod]
@@ -118,7 +118,7 @@ namespace UTGestionApuestas
         [TestMethod]
         public async Task TestEliminarAccionAsync()
         {
-            TipoEvento eventoLeido = new TipoEvento
+            TipoEvento tipoEventoAEliminar = new TipoEvento
             {
                 Id = 4,
                 DeporteId = 1,
@@ -128,12 +128,12 @@ namespace UTGestionApuestas
                 FechaFin = System.DateTime.Now,
                 Descripcion = "hola"
             };
-            mockTipoEventosRepository.Setup(tp => tp.DeleteTipoEvento(4)).ReturnsAsync(eventoLeido);
+            mockTipoEventosRepository.Setup(tp => tp.DeleteTipoEvento(4)).ReturnsAsync(tipoEventoAEliminar);
             mockTipoEventosRepository.Setup(tp => tp.TipoEventoExists(4)).ReturnsAsync(true);
 
-            var accionDevuelta = await cut.DeleteTipoEvento(4);
+            var tipoEventoDevuelto = await cut.DeleteTipoEvento(4);
 
-            Assert.AreEqual(accionDevuelta, eventoLeido);
+            Assert.AreEqual(tipoEventoDevuelto, tipoEventoAEliminar);
             mockTipoEventosRepository.Verify(p => p.DeleteTipoEvento(4), Times.Once());
         }
 
