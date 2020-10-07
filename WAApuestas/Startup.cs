@@ -5,7 +5,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WAApuestas.DeportesSpace;
 using WAApuestas.TiposEventoSpace;
-using WAApuestas.TiposApuestasSpace;
+using WAApuestas.TiposApuestaSpace;
 
 namespace WAApuestas
 {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposApuestasSpace
+namespace WAApuestas.TiposApuestaSpace
 {
     public interface ITiposApuestasRepository
     {

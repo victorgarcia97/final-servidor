@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposApuestasSpace
+namespace WAApuestas.TiposApuestaSpace
 {
     [Route("api/[controller]")]
     [ApiController]

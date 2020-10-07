@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposApuestasSpace
+namespace WAApuestas.TiposApuestaSpace
 {
     public class TiposApuestasRepository: ITiposApuestasRepository
     {
