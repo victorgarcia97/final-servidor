@@ -8,18 +8,18 @@ using WAApuestas.Models;
 
 namespace WAApuestas.TiposEventoSpace
 {
-    public class TipoEventosRepository: ITipoEventosRepository
+    public class TiposEventoRepository: ITiposEventoRepository
     {
         private readonly GestionApuestasDbContext _context;
-        private readonly ILogger<TipoEventosRepository> _logger;
+        private readonly ILogger<TiposEventoRepository> _logger;
 
-        public TipoEventosRepository(GestionApuestasDbContext context, ILogger<TipoEventosRepository> logger)
+        public TiposEventoRepository(GestionApuestasDbContext context, ILogger<TiposEventoRepository> logger)
         {
             _context = context;
             _logger = logger;
         }
 
-        public async Task<IEnumerable<TipoEvento>> GetTiposEventos()
+        public async Task<IEnumerable<TipoEvento>> GetTiposEvento()
         {
             return await _context.TiposEvento
                                             .Include(d => d.Deporte)

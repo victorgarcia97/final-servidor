@@ -31,11 +31,11 @@ namespace WAApuestas
             services.AddScoped<IDeportesService, DeportesService>();
             services.AddScoped<IDeportesRepository, DeportesRepository>();
 
-            services.AddScoped<ITipoEventosService, TipoEventosService>();
-            services.AddScoped<ITipoEventosRepository, TipoEventosRepository>();
+            services.AddScoped<ITiposEventoService, TiposEventoService>();
+            services.AddScoped<ITiposEventoRepository, TiposEventoRepository>();
 
-            services.AddScoped<ITiposApuestasService, TiposApuestasService>();
-            services.AddScoped<ITiposApuestasRepository, TiposApuestasRepository>();
+            services.AddScoped<ITiposApuestaService, TiposApuestaService>();
+            services.AddScoped<ITiposApuestaRepository, TiposApuestaRepository>();
 
 
             services.AddSwaggerGen(c =>

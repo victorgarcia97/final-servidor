@@ -6,12 +6,12 @@ using WAApuestas.Models;
 
 namespace WAApuestas.TiposEventoSpace
 {
-    public class TipoEventosService : ITipoEventosService
+    public class TiposEventoService : ITiposEventoService
     {
-        private readonly ITipoEventosRepository _tipoEventosRepository;
-        private readonly ILogger<ITipoEventosService> _loggerService;
+        private readonly ITiposEventoRepository _tipoEventosRepository;
+        private readonly ILogger<ITiposEventoService> _loggerService;
 
-        public TipoEventosService(ITipoEventosRepository tipoEventosRepository, ILogger<TipoEventosService> loggerService)
+        public TiposEventoService(ITiposEventoRepository tipoEventosRepository, ILogger<TiposEventoService> loggerService)
         {
             _tipoEventosRepository = tipoEventosRepository;
             _loggerService = loggerService;
@@ -41,9 +41,9 @@ namespace WAApuestas.TiposEventoSpace
             return tipoEvento;
         }
 
-        public async Task<IEnumerable<TipoEvento>> GetTiposEventos()
+        public async Task<IEnumerable<TipoEvento>> GetTiposEvento()
         {
-            return await _tipoEventosRepository.GetTiposEventos();
+            return await _tipoEventosRepository.GetTiposEvento();
         }
 
         public async Task<TipoEvento> PostTipoEvento(TipoEvento tipoEvento)

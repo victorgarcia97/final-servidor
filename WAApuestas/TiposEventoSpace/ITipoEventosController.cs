@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace WAApuestas.TiposEventoSpace
 {
-    public interface ITipoEventosController
+    public interface ITiposEventoController
     {
     }
 }

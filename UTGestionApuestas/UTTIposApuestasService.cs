@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,16 +12,16 @@ namespace UTGestionApuestas
     [TestClass]
     public class UTTiposApuestasService
     {
-        private ITiposApuestasService cut;
-        private Mock<ITiposApuestasRepository> mockTiposApuestasRepository;
-        private Mock<ILogger<TiposApuestasService>> moqLogger;
+        private ITiposApuestaService cut;
+        private Mock<ITiposApuestaRepository> mockTiposApuestasRepository;
+        private Mock<ILogger<TiposApuestaService>> moqLogger;
 
         [TestInitialize]
         public void SetUp()
         {
-            this.mockTiposApuestasRepository = new Mock<ITiposApuestasRepository>();
-            this.moqLogger = new Mock<ILogger<TiposApuestasService>>();
-            this.cut = new TiposApuestasService(mockTiposApuestasRepository.Object, moqLogger.Object);
+            this.mockTiposApuestasRepository = new Mock<ITiposApuestaRepository>();
+            this.moqLogger = new Mock<ILogger<TiposApuestaService>>();
+            this.cut = new TiposApuestaService(mockTiposApuestasRepository.Object, moqLogger.Object);
         }
         [TestMethod]
         public async Task TestGetTiposApuestasAsync()
@@ -51,14 +49,14 @@ namespace UTGestionApuestas
                 Deporte = new Deporte { Id = 1, Nombre = "Baloncesto" },
                 NotasExtra = ""
             });
-            mockTiposApuestasRepository.Setup(ta => ta.GetTiposApuestas()).ReturnsAsync(listTiposApuestas);
+            mockTiposApuestasRepository.Setup(ta => ta.GetTiposApuesta()).ReturnsAsync(listTiposApuestas);
 
-            var resultadoLeido = await cut.GetTiposApuestas();
+            var resultadoLeido = await cut.GetTiposApuesta();
 
             Assert.IsNotNull(resultadoLeido);
             Assert.AreEqual(listTiposApuestas, resultadoLeido);
 
-            mockTiposApuestasRepository.Verify(r => r.GetTiposApuestas(), Times.Once());
+            mockTiposApuestasRepository.Verify(r => r.GetTiposApuesta(), Times.Once());
         }
         [TestMethod]
         public async Task TestGetTipoApuestaAsync()
@@ -75,14 +73,14 @@ namespace UTGestionApuestas
                 NotasExtra = ""
             };
 
-            mockTiposApuestasRepository.Setup(ta => ta.GetTipoApuestas(idALeer)).ReturnsAsync(tipoApuestaLeida);
+            mockTiposApuestasRepository.Setup(ta => ta.GetTipoApuesta(idALeer)).ReturnsAsync(tipoApuestaLeida);
 
-            mockTiposApuestasRepository.Setup(ta => ta.TipoApuestasExists(idALeer)).ReturnsAsync(true);
+            mockTiposApuestasRepository.Setup(ta => ta.TipoApuestaExists(idALeer)).ReturnsAsync(true);
 
-            var tipoApuestaDevuelta = await cut.GetTipoApuestas(idALeer);
+            var tipoApuestaDevuelta = await cut.GetTipoApuesta(idALeer);
 
             Assert.AreEqual(tipoApuestaDevuelta, tipoApuestaLeida);
-            mockTiposApuestasRepository.Verify(r => r.GetTipoApuestas(idALeer), Times.Once);
+            mockTiposApuestasRepository.Verify(r => r.GetTipoApuesta(idALeer), Times.Once);
         }
         [TestMethod]
         public async Task TestActualizarAccionAsync()
@@ -97,10 +95,10 @@ namespace UTGestionApuestas
                 Deporte = new Deporte { Id = 1, Nombre = "Baloncesto" },
                 NotasExtra = ""
             };
-            mockTiposApuestasRepository.Setup(ta => ta.TipoApuestasExists(tipoApuesta.Id)).ReturnsAsync(true);
-            await cut.PutTipoApuestas(tipoApuesta);
+            mockTiposApuestasRepository.Setup(ta => ta.TipoApuestaExists(tipoApuesta.Id)).ReturnsAsync(true);
+            await cut.PutTipoApuesta(tipoApuesta);
 
-            mockTiposApuestasRepository.Verify(r => r.PutTipoApuestas(It.IsAny<TipoApuestas>()), Times.Once());
+            mockTiposApuestasRepository.Verify(r => r.PutTipoApuesta(It.IsAny<TipoApuestas>()), Times.Once());
         }
         [TestMethod]
         public async Task TestCrearAccionAsync()
@@ -115,8 +113,8 @@ namespace UTGestionApuestas
                 Deporte = new Deporte { Id = 1, Nombre = "Baloncesto" },
                 NotasExtra = ""
             };
-            await cut.PostTipoApuestas(tipoApuesta);
-            mockTiposApuestasRepository.Verify(tp => tp.PostTipoApuestas(It.IsAny<TipoApuestas>()), Times.Once());
+            await cut.PostTipoApuesta(tipoApuesta);
+            mockTiposApuestasRepository.Verify(tp => tp.PostTipoApuesta(It.IsAny<TipoApuestas>()), Times.Once());
         }
 
         [TestMethod]
@@ -132,13 +130,13 @@ namespace UTGestionApuestas
                 Deporte = new Deporte { Id = 1, Nombre = "Baloncesto" },
                 NotasExtra = ""
             };
-            mockTiposApuestasRepository.Setup(ta => ta.DeleteTipoApuestas(4)).ReturnsAsync(apuestaEliminada);
-            mockTiposApuestasRepository.Setup(ta => ta.TipoApuestasExists(4)).ReturnsAsync(true);
+            mockTiposApuestasRepository.Setup(ta => ta.DeleteTipoApuesta(4)).ReturnsAsync(apuestaEliminada);
+            mockTiposApuestasRepository.Setup(ta => ta.TipoApuestaExists(4)).ReturnsAsync(true);
 
-            var tipoApuestaDevuelta = await cut.DeleteTipoApuestas(4);
+            var tipoApuestaDevuelta = await cut.DeleteTipoApuesta(4);
 
             Assert.AreEqual(tipoApuestaDevuelta, apuestaEliminada);
-            mockTiposApuestasRepository.Verify(p => p.DeleteTipoApuestas(4), Times.Once());
+            mockTiposApuestasRepository.Verify(p => p.DeleteTipoApuesta(4), Times.Once());
         }
     }
 }

@@ -9,11 +9,11 @@ namespace WAApuestas.TiposEventoSpace
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TipoEventosController : ControllerBase
+    public class TiposEventoController : ControllerBase
     {
-        private readonly ITipoEventosService _tipoEventosService;
+        private readonly ITiposEventoService _tipoEventosService;
 
-        public TipoEventosController(ITipoEventosService tipoEventosService)
+        public TiposEventoController(ITiposEventoService tipoEventosService)
         {
             _tipoEventosService = tipoEventosService;
         }
@@ -22,7 +22,7 @@ namespace WAApuestas.TiposEventoSpace
         [HttpGet]
         public async Task<IEnumerable<TipoEvento>> GetTiposEventos()
         {
-            return await _tipoEventosService.GetTiposEventos();
+            return await _tipoEventosService.GetTiposEvento();
         }
 
         // GET: api/TipoEventos/5
@@ -60,7 +60,7 @@ namespace WAApuestas.TiposEventoSpace
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!_tipoEventosService.GetTiposEventos().Result.Any(e => e.Id == id))
+                if (!_tipoEventosService.GetTiposEvento().Result.Any(e => e.Id == id))
                 {
                     return NotFound();
                 }

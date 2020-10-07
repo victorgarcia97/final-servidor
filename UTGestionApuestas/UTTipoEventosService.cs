@@ -12,16 +12,16 @@ namespace UTGestionApuestas
     [TestClass]
     public class UTTipoEventosService
     {
-        private ITipoEventosService cut;
-        private Mock<ITipoEventosRepository> mockTipoEventosRepository;
-        private Mock<ILogger<TipoEventosService>> moqLogger;
+        private ITiposEventoService cut;
+        private Mock<ITiposEventoRepository> mockTipoEventosRepository;
+        private Mock<ILogger<TiposEventoService>> moqLogger;
 
         [TestInitialize]
         public void SetUp()
         {
-            this.mockTipoEventosRepository = new Mock<ITipoEventosRepository>();
-            this.moqLogger = new Mock<ILogger<TipoEventosService>>();
-            this.cut = new TipoEventosService(mockTipoEventosRepository.Object, moqLogger.Object);
+            this.mockTipoEventosRepository = new Mock<ITiposEventoRepository>();
+            this.moqLogger = new Mock<ILogger<TiposEventoService>>();
+            this.cut = new TiposEventoService(mockTipoEventosRepository.Object, moqLogger.Object);
         }
         [TestMethod]
         public async Task TestGetTipoEventosAsync()
@@ -47,14 +47,14 @@ namespace UTGestionApuestas
                 FechaFin = System.DateTime.Now,
                 Descripcion = "hola"
             });
-            mockTipoEventosRepository.Setup(tp => tp.GetTiposEventos()).ReturnsAsync(listTipoEventos);
+            mockTipoEventosRepository.Setup(tp => tp.GetTiposEvento()).ReturnsAsync(listTipoEventos);
 
-            var resultadoLeido = await cut.GetTiposEventos();
+            var resultadoLeido = await cut.GetTiposEvento();
 
             Assert.IsNotNull(resultadoLeido);
             Assert.AreEqual(listTipoEventos, resultadoLeido);
 
-            mockTipoEventosRepository.Verify(r => r.GetTiposEventos(), Times.Once());
+            mockTipoEventosRepository.Verify(r => r.GetTiposEvento(), Times.Once());
         }
         [TestMethod]
         public async Task TestGetTipoEventoAsync()
