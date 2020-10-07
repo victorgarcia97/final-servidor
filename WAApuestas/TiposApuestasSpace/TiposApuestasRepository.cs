@@ -18,14 +18,14 @@ namespace WAApuestas.TiposApuestasSpace
 
         public async Task<IEnumerable<TipoApuestas>> GetTiposApuestas()
         {
-            return await _context.TiposApuestas
+            return await _context.TiposApuesta
                                     .Include(d => d.Deporte)
                                     .ToListAsync();
         }
 
         public async Task<TipoApuestas> GetTipoApuestas(int id)
         {
-            var tipoApuestas = await _context.TiposApuestas
+            var tipoApuestas = await _context.TiposApuesta
                                                     .Where(tp => tp.Id == id)
                                                     .Include(d => d.Deporte)
                                                     .FirstOrDefaultAsync();
@@ -46,7 +46,7 @@ namespace WAApuestas.TiposApuestasSpace
 
         public async Task<TipoApuestas> PostTipoApuestas(TipoApuestas tipoApuestas)
         {
-            _context.TiposApuestas.Add(tipoApuestas);
+            _context.TiposApuesta.Add(tipoApuestas);
             await _context.SaveChangesAsync();
 
             return tipoApuestas;
@@ -61,7 +61,7 @@ namespace WAApuestas.TiposApuestasSpace
                 return null;
             }
 
-            _context.TiposApuestas.Remove(tipoApuestas);
+            _context.TiposApuesta.Remove(tipoApuestas);
             await _context.SaveChangesAsync();
 
             return tipoApuestas;
@@ -69,7 +69,7 @@ namespace WAApuestas.TiposApuestasSpace
 
         public Task<bool> TipoApuestasExists(int id)
         {
-            return _context.TiposApuestas.AnyAsync(e => e.Id == id);
+            return _context.TiposApuesta.AnyAsync(e => e.Id == id);
         }
     }
 }

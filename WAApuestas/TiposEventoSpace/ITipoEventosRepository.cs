@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposEventosSpace
+namespace WAApuestas.TiposEventoSpace
 {
     public interface ITipoEventosRepository
     {

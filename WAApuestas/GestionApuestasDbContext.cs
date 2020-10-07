@@ -14,8 +14,8 @@ namespace WAApuestas
         }
 
         public DbSet<Deporte> Deportes { get; set; }
-        public DbSet<TipoApuestas> TiposApuestas { get; set; }
-        public DbSet<TipoEvento> TiposEventos { get; set; }
+        public DbSet<TipoApuestas> TiposApuesta { get; set; }
+        public DbSet<TipoEvento> TiposEvento { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

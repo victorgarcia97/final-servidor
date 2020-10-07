@@ -4,7 +4,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using WAApuestas.DeportesSpace;
-using WAApuestas.TiposEventosSpace;
+using WAApuestas.TiposEventoSpace;
+using WAApuestas.TiposApuestasSpace;
 
 namespace WAApuestas
 {
@@ -32,6 +33,9 @@ namespace WAApuestas
 
             services.AddScoped<ITipoEventosService, TipoEventosService>();
             services.AddScoped<ITipoEventosRepository, TipoEventosRepository>();
+
+            services.AddScoped<ITiposApuestasService, TiposApuestasService>();
+            services.AddScoped<ITiposApuestasRepository, TiposApuestasRepository>();
 
 
             services.AddSwaggerGen(c =>

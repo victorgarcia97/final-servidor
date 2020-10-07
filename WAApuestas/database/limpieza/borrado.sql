@@ -1,7 +1,7 @@
-﻿USE ApuesThor;
+﻿USE ApuestaTo;
 GO
 
-DROP TABLE TiposApuestas
+DROP TABLE TiposApuesta
 GO
 DROP TABLE TiposEvento
 GO

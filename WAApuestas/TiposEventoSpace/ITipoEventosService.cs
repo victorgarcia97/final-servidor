@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposEventosSpace
+namespace WAApuestas.TiposEventoSpace
 {
     public interface ITipoEventosService
     {

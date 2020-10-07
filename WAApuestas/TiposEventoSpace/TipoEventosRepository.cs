@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposEventosSpace
+namespace WAApuestas.TiposEventoSpace
 {
     public class TipoEventosRepository: ITipoEventosRepository
     {
@@ -21,14 +21,14 @@ namespace WAApuestas.TiposEventosSpace
 
         public async Task<IEnumerable<TipoEvento>> GetTiposEventos()
         {
-            return await _context.TiposEventos
+            return await _context.TiposEvento
                                             .Include(d => d.Deporte)
                                             .ToListAsync();
         }
 
         public async Task<TipoEvento> GetTipoEvento(int id)
         {
-            var tipoEvento = await _context.TiposEventos
+            var tipoEvento = await _context.TiposEvento
                                                 .Where(te => te.Id == id)
                                                 .Include(d => d.Deporte)
                                                 .FirstOrDefaultAsync();
@@ -49,7 +49,7 @@ namespace WAApuestas.TiposEventosSpace
 
         public async Task<TipoEvento> PostTipoEvento(TipoEvento tipoEvento)
         {
-            _context.TiposEventos.Add(tipoEvento);
+            _context.TiposEvento.Add(tipoEvento);
             await _context.SaveChangesAsync();
 
             return await this.GetTipoEvento(tipoEvento.Id);
@@ -57,7 +57,7 @@ namespace WAApuestas.TiposEventosSpace
 
         public async Task<TipoEvento> DeleteTipoEvento(int id)
         {
-            var tipoEvento = await _context.TiposEventos
+            var tipoEvento = await _context.TiposEvento
                                                  .Where(te => te.Id == id)
                                                  .Include(d => d.Deporte)
                                                  .FirstOrDefaultAsync();
@@ -67,7 +67,7 @@ namespace WAApuestas.TiposEventosSpace
                 return null;
             }
 
-            _context.TiposEventos.Remove(tipoEvento);
+            _context.TiposEvento.Remove(tipoEvento);
             await _context.SaveChangesAsync();
 
             return tipoEvento;
@@ -75,7 +75,7 @@ namespace WAApuestas.TiposEventosSpace
 
         public async Task<bool> TipoEventoExists(int id)
         {
-            return await _context.TiposEventos.AnyAsync(e => e.Id == id);
+            return await _context.TiposEvento.AnyAsync(e => e.Id == id);
         }
     }
 }

@@ -1,8 +1,8 @@
-﻿IF NOT EXISTS(SELECT 1 FROM sys.databases WHERE name='ApuesThor')
-    CREATE DATABASE ApuesThor;
+﻿IF NOT EXISTS(SELECT 1 FROM sys.databases WHERE name='ApuestaTo')
+    CREATE DATABASE ApuestaTo;
 GO
 
-USE ApuesThor;
+USE ApuestaTo;
 GO
 
 CREATE TABLE [dbo].[Deportes] (
@@ -11,7 +11,7 @@ CREATE TABLE [dbo].[Deportes] (
 );
 GO
 
-CREATE TABLE [dbo].[TiposApuestas] (
+CREATE TABLE [dbo].[TiposApuesta] (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
     [Descripcion] VARCHAR(50) NOT NULL,
     [Multiplicador] INT NOT NULL,

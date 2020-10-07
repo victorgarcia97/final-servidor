@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using WAApuestas.Models;
 
-namespace WAApuestas.TiposEventosSpace
+namespace WAApuestas.TiposEventoSpace
 {
     public class TipoEventosService : ITipoEventosService
     {
