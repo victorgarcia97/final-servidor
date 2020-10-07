@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using WAApuestas.Models;
-using WAApuestas.TiposApuestasSpace;
+using WAApuestas.TiposApuestaSpace;
 
 namespace UTGestionApuestas
 {
