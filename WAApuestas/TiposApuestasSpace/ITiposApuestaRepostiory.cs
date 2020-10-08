@@ -12,7 +12,7 @@ namespace WAApuestas.TiposApuestaSpace
         Task<TipoApuesta> GetTipoApuesta(int id);
         Task<IEnumerable<TipoApuesta>> GetTiposApuesta();
         Task<TipoApuesta> PostTipoApuesta(TipoApuesta tipoApuestas);
-        Task PutTipoApuesta(TipoApuesta tipoApuestas);
+        Task<TipoApuesta> PutTipoApuesta(TipoApuesta tipoApuestas);
         Task<bool> TipoApuestaExists(int id);
     }
 }

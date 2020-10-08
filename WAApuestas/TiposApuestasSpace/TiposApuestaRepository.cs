@@ -38,10 +38,11 @@ namespace WAApuestas.TiposApuestaSpace
             return tipoApuestas;
         }
 
-        public async Task PutTipoApuesta(TipoApuesta tipoApuestas)
+        public async Task<TipoApuesta> PutTipoApuesta(TipoApuesta tipoApuestas)
         {
             _context.Entry(tipoApuestas).State = EntityState.Modified;
-            await _context.SaveChangesAsync();         
+            await _context.SaveChangesAsync();  
+            return await this.GetTipoApuesta(tipoApuestas.Id);       
         }
 
         public async Task<TipoApuesta> PostTipoApuesta(TipoApuesta tipoApuestas)
@@ -49,7 +50,7 @@ namespace WAApuestas.TiposApuestaSpace
             _context.TiposApuesta.Add(tipoApuestas);
             await _context.SaveChangesAsync();
 
-            return tipoApuestas;
+            return await this.GetTipoApuesta(tipoApuestas.Id); 
         }
 
         public async Task<TipoApuesta> DeleteTipoApuesta(int id)

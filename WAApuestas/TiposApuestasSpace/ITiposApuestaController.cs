@@ -17,6 +17,6 @@ namespace WAApuestas.TiposApuestaSpace
         [HttpPost]
         Task<ActionResult<TipoApuesta>> PostTipoApuesta(TipoApuesta tipoApuestas);
         [HttpPut("{id}")]
-        Task<IActionResult> PutTipoApuesta(int id, TipoApuesta tipoApuestas);
+        Task<ActionResult<TipoApuesta>> PutTipoApuesta(int id, TipoApuesta tipoApuestas);
     }
 }

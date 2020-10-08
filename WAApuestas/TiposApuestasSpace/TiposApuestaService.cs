@@ -61,9 +61,9 @@ namespace WAApuestas.TiposApuestaSpace
             return await _tiposApuestasRepository.PostTipoApuesta(tipoApuestas);
         }
 
-        public async Task PutTipoApuesta(TipoApuesta tipoApuestas)
+        public async Task<TipoApuesta> PutTipoApuesta(TipoApuesta tipoApuestas)
         {
-            await _tiposApuestasRepository.PutTipoApuesta(tipoApuestas);
+            return await _tiposApuestasRepository.PutTipoApuesta(tipoApuestas);
         }
 
         public async Task<IEnumerable<TipoApuesta>> GetTiposApuestasPorDeporte(int tipoEventoId)

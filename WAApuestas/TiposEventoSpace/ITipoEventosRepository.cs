@@ -12,7 +12,7 @@ namespace WAApuestas.TiposEventoSpace
         Task<TipoEvento> GetTipoEvento(int id);
         Task<IEnumerable<TipoEvento>> GetTiposEvento();
         Task<TipoEvento> PostTipoEvento(TipoEvento tipoEvento);
-        Task PutTipoEvento(TipoEvento tipoEvento);
+        Task<TipoEvento>  PutTipoEvento(TipoEvento tipoEvento);
         Task<bool> TipoEventoExists(int id);
     }
 }

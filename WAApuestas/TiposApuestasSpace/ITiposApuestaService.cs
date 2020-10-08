@@ -11,6 +11,6 @@ namespace WAApuestas.TiposApuestaSpace
         Task<IEnumerable<TipoApuesta>> GetTiposApuesta();
         Task<IEnumerable<TipoApuesta>> GetTiposApuestasPorDeporte(int tipoEventoId);
         Task<TipoApuesta> PostTipoApuesta(TipoApuesta tipoApuestas);
-        Task PutTipoApuesta(TipoApuesta tipoApuestas);
+        Task<TipoApuesta> PutTipoApuesta(TipoApuesta tipoApuestas);
     }
 }

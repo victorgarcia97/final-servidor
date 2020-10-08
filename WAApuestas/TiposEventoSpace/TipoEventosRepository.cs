@@ -41,10 +41,12 @@ namespace WAApuestas.TiposEventoSpace
             return tipoEvento;
         }
 
-        public async Task PutTipoEvento(TipoEvento tipoEvento)
+        public async Task<TipoEvento> PutTipoEvento(TipoEvento tipoEvento)
         {
             _context.Entry(tipoEvento).State = EntityState.Modified;  
             await _context.SaveChangesAsync();
+
+            return await this.GetTipoEvento(tipoEvento.Id);
         }
 
         public async Task<TipoEvento> PostTipoEvento(TipoEvento tipoEvento)

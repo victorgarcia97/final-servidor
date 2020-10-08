@@ -44,8 +44,10 @@ namespace WAApuestas.TiposApuestaSpace
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoApuesta(int id, TipoApuesta tipoApuestas)
+        public async Task<ActionResult<TipoApuesta>> PutTipoApuesta(int id, TipoApuesta tipoApuestas)
         {
+            TipoApuesta tp;
+
             if (id != tipoApuestas.Id)
             {
                 return BadRequest();
@@ -54,7 +56,7 @@ namespace WAApuestas.TiposApuestaSpace
 
             try
             {
-                await _tiposApuestasService.PutTipoApuesta(tipoApuestas);
+                tp = await _tiposApuestasService.PutTipoApuesta(tipoApuestas);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -68,7 +70,7 @@ namespace WAApuestas.TiposApuestaSpace
                 }
             }
 
-            return NoContent();
+            return tp;
         }
 
         // POST: api/TipoApuestas
@@ -99,7 +101,7 @@ namespace WAApuestas.TiposApuestaSpace
             return tipoApuestas;
         }
 
-        [HttpGet("PorDeporte")]
+        [HttpGet("PorDeporte/{tipoEventoId}")]
         public async Task<ActionResult<IEnumerable<TipoApuesta>>> GetTiposApuestasPorDeporte(int tipoEventoId)
         {
             IEnumerable<TipoApuesta> lista;

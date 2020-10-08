@@ -47,8 +47,9 @@ namespace WAApuestas.TiposEventoSpace
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoEvento(int id, TipoEvento tipoEvento)
+        public async Task<ActionResult<TipoEvento>> PutTipoEvento(int id, TipoEvento tipoEvento)
         {
+            TipoEvento tp;
             if (id != tipoEvento.Id)
             {
                 return BadRequest();
@@ -56,7 +57,7 @@ namespace WAApuestas.TiposEventoSpace
 
             try
             {
-                await _tipoEventosService.PutTipoEvento(tipoEvento);
+                tp = await _tipoEventosService.PutTipoEvento(tipoEvento);
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -70,7 +71,7 @@ namespace WAApuestas.TiposEventoSpace
                 }
             }
 
-            return NoContent();
+            return Accepted(tp);
         }
 
         // POST: api/TipoEventos

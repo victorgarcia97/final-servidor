@@ -51,9 +51,9 @@ namespace WAApuestas.TiposEventoSpace
             return await _tipoEventosRepository.PostTipoEvento(tipoEvento);
         }
 
-        public async Task PutTipoEvento(TipoEvento tipoEvento)
+        public async Task<TipoEvento>  PutTipoEvento(TipoEvento tipoEvento)
         {
-           await  _tipoEventosRepository.PutTipoEvento(tipoEvento);
+           return await  _tipoEventosRepository.PutTipoEvento(tipoEvento);
         }
     }
 }
