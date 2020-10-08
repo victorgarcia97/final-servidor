@@ -19,16 +19,16 @@ namespace WAApuestas.TiposApuestaSpace
 
         // GET: api/TipoApuestas
         [HttpGet]
-        public async Task<IEnumerable<TipoApuestas>> GetTiposApuesta()
+        public async Task<IEnumerable<TipoApuesta>> GetTiposApuesta()
         {
             return await _tiposApuestasService.GetTiposApuesta();
         }
 
         // GET: api/TipoApuestas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<TipoApuestas>> GetTipoApuesta(int id)
+        public async Task<ActionResult<TipoApuesta>> GetTipoApuesta(int id)
         {
-            TipoApuestas tipoApuestas;
+            TipoApuesta tipoApuestas;
             try {
                 tipoApuestas = await _tiposApuestasService.GetTipoApuesta(id);
             }
@@ -44,7 +44,7 @@ namespace WAApuestas.TiposApuestaSpace
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTipoApuesta(int id, TipoApuestas tipoApuestas)
+        public async Task<IActionResult> PutTipoApuesta(int id, TipoApuesta tipoApuestas)
         {
             if (id != tipoApuestas.Id)
             {
@@ -75,7 +75,7 @@ namespace WAApuestas.TiposApuestaSpace
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<TipoApuestas>> PostTipoApuesta(TipoApuestas tipoApuestas)
+        public async Task<ActionResult<TipoApuesta>> PostTipoApuesta(TipoApuesta tipoApuestas)
         {
             var tipoApuesta = await _tiposApuestasService.PostTipoApuesta(tipoApuestas);
 
@@ -84,9 +84,9 @@ namespace WAApuestas.TiposApuestaSpace
 
         // DELETE: api/TipoApuestas/5
         [HttpDelete("{id}")]
-        public async Task<ActionResult<TipoApuestas>> DeleteTipoApuesta(int id)
+        public async Task<ActionResult<TipoApuesta>> DeleteTipoApuesta(int id)
         {
-            TipoApuestas tipoApuestas;
+            TipoApuesta tipoApuestas;
             try
             {
                 tipoApuestas = await _tiposApuestasService.DeleteTipoApuesta(id);
@@ -97,6 +97,23 @@ namespace WAApuestas.TiposApuestaSpace
             }
 
             return tipoApuestas;
+        }
+
+        [HttpGet("PorDeporte")]
+        public async Task<ActionResult<IEnumerable<TipoApuesta>>> GetTiposApuestasPorDeporte(int tipoEventoId)
+        {
+            IEnumerable<TipoApuesta> lista;
+            try
+            {
+                lista = await _tiposApuestasService.GetTiposApuestasPorDeporte(tipoEventoId);
+
+            }
+            catch(GestionApuestasException e)
+            {
+                return NotFound(e.Message);
+            }
+
+            return  Accepted(lista);
         }
     }
 }

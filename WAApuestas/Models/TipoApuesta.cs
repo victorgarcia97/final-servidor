@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace WAApuestas.Models
 {
-    public class TipoApuestas
+    public class TipoApuesta
     {
         public int Id { get; set; }
         public string Descripcion { get; set; }
@@ -16,5 +14,8 @@ namespace WAApuestas.Models
         public Deporte Deporte { get; set; }
 
         public string NotasExtra { get; set; }
+
+        [JsonIgnore]
+        public List<EventoTipoApuesta> EventosTiposApuesta { get; set; }
     }
 }

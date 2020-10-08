@@ -4,8 +4,10 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
+using WAApuestas.DeportesSpace;
 using WAApuestas.Models;
 using WAApuestas.TiposApuestaSpace;
+using WAApuestas.TiposEventoSpace;
 
 namespace UTGestionApuestas
 {
@@ -14,21 +16,25 @@ namespace UTGestionApuestas
     {
         private ITiposApuestaService cut;
         private Mock<ITiposApuestaRepository> mockTiposApuestasRepository;
+        private Mock<ITiposEventoRepository> mockTiposEventosRepository;
+        private Mock<IDeportesRepository> mockDeportesRepository;
         private Mock<ILogger<TiposApuestaService>> moqLogger;
 
         [TestInitialize]
         public void SetUp()
         {
             this.mockTiposApuestasRepository = new Mock<ITiposApuestaRepository>();
+            this.mockDeportesRepository = new Mock<IDeportesRepository>();
+            this.mockTiposEventosRepository = new Mock<ITiposEventoRepository>();
             this.moqLogger = new Mock<ILogger<TiposApuestaService>>();
-            this.cut = new TiposApuestaService(mockTiposApuestasRepository.Object, moqLogger.Object);
+            this.cut = new TiposApuestaService(mockTiposApuestasRepository.Object, moqLogger.Object, mockTiposEventosRepository.Object, mockDeportesRepository.Object);
         }
         [TestMethod]
         public async Task TestGetTiposApuestasAsync()
         {
-            IEnumerable<TipoApuestas> listTiposApuestas = new List<TipoApuestas>();
+            IEnumerable<TipoApuesta> listTiposApuestas = new List<TipoApuesta>();
 
-            listTiposApuestas.Append(new TipoApuestas
+            listTiposApuestas.Append(new TipoApuesta
             {
                 Id = 1,
                 Descripcion = "Al ganador",
@@ -39,7 +45,7 @@ namespace UTGestionApuestas
                 NotasExtra = ""
 
             });
-            listTiposApuestas.Append(new TipoApuestas
+            listTiposApuestas.Append(new TipoApuesta
             {
                 Id = 2,
                 Descripcion = "Al ganador",
@@ -62,7 +68,7 @@ namespace UTGestionApuestas
         public async Task TestGetTipoApuestaAsync()
         {
             int idALeer = 1;
-            TipoApuestas tipoApuestaLeida = new TipoApuestas
+            TipoApuesta tipoApuestaLeida = new TipoApuesta
             {
                 Id = 1,
                 Descripcion = "Al ganador",
@@ -85,7 +91,7 @@ namespace UTGestionApuestas
         [TestMethod]
         public async Task TestActualizarAccionAsync()
         {
-            TipoApuestas tipoApuesta = new TipoApuestas
+            TipoApuesta tipoApuesta = new TipoApuesta
             {
                 Id = 1,
                 Descripcion = "Al ganador",
@@ -98,12 +104,12 @@ namespace UTGestionApuestas
             mockTiposApuestasRepository.Setup(ta => ta.TipoApuestaExists(tipoApuesta.Id)).ReturnsAsync(true);
             await cut.PutTipoApuesta(tipoApuesta);
 
-            mockTiposApuestasRepository.Verify(r => r.PutTipoApuesta(It.IsAny<TipoApuestas>()), Times.Once());
+            mockTiposApuestasRepository.Verify(r => r.PutTipoApuesta(It.IsAny<TipoApuesta>()), Times.Once());
         }
         [TestMethod]
         public async Task TestCrearAccionAsync()
         {
-            TipoApuestas tipoApuesta = new TipoApuestas
+            TipoApuesta tipoApuesta = new TipoApuesta
             {
                 Id = 1,
                 Descripcion = "Al ganador",
@@ -114,13 +120,13 @@ namespace UTGestionApuestas
                 NotasExtra = ""
             };
             await cut.PostTipoApuesta(tipoApuesta);
-            mockTiposApuestasRepository.Verify(tp => tp.PostTipoApuesta(It.IsAny<TipoApuestas>()), Times.Once());
+            mockTiposApuestasRepository.Verify(tp => tp.PostTipoApuesta(It.IsAny<TipoApuesta>()), Times.Once());
         }
 
         [TestMethod]
         public async Task TestEliminarAccionAsync()
         {
-            TipoApuestas apuestaEliminada = new TipoApuestas
+            TipoApuesta apuestaEliminada = new TipoApuesta
             {
                 Id = 4,
                 Descripcion = "Al ganador",

@@ -14,8 +14,27 @@ namespace WAApuestas
         }
 
         public DbSet<Deporte> Deportes { get; set; }
-        public DbSet<TipoApuestas> TiposApuesta { get; set; }
+        public DbSet<TipoApuesta> TiposApuesta { get; set; }
         public DbSet<TipoEvento> TiposEvento { get; set; }
+        public DbSet<Evento> Eventos { get; set; }
+        public DbSet<EventoTipoApuesta> EventosTiposApuesta { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<EventoTipoApuesta>()
+                .HasKey(k => new { k.EventoId, k.TipoApuestaId });
+
+            modelBuilder.Entity<EventoTipoApuesta>()
+                .HasOne(e => e.Evento)
+                .WithMany(tr => tr.EventosTiposApuesta)
+                .HasForeignKey(e => e.EventoId);
+
+            modelBuilder.Entity<EventoTipoApuesta>()
+                .HasOne(ta => ta.TipoApuesta)
+                .WithMany(et => et.EventosTiposApuesta)
+                .HasForeignKey(ta => ta.TipoApuestaId);
+        }
+
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

@@ -6,10 +6,11 @@ namespace WAApuestas.TiposApuestaSpace
 {
     public interface ITiposApuestaService
     {
-        Task<TipoApuestas> DeleteTipoApuesta(int id);
-        Task<TipoApuestas> GetTipoApuesta(int id);
-        Task<IEnumerable<TipoApuestas>> GetTiposApuesta();
-        Task<TipoApuestas> PostTipoApuesta(TipoApuestas tipoApuestas);
-        Task PutTipoApuesta(TipoApuestas tipoApuestas);
+        Task<TipoApuesta> DeleteTipoApuesta(int id);
+        Task<TipoApuesta> GetTipoApuesta(int id);
+        Task<IEnumerable<TipoApuesta>> GetTiposApuesta();
+        Task<IEnumerable<TipoApuesta>> GetTiposApuestasPorDeporte(int tipoEventoId);
+        Task<TipoApuesta> PostTipoApuesta(TipoApuesta tipoApuestas);
+        Task PutTipoApuesta(TipoApuesta tipoApuestas);
     }
 }

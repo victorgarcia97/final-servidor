@@ -8,11 +8,11 @@ namespace WAApuestas.TiposApuestaSpace
 {
     public interface ITiposApuestaRepository
     {
-        Task<TipoApuestas> DeleteTipoApuesta(int id);
-        Task<TipoApuestas> GetTipoApuesta(int id);
-        Task<IEnumerable<TipoApuestas>> GetTiposApuesta();
-        Task<TipoApuestas> PostTipoApuesta(TipoApuestas tipoApuestas);
-        Task PutTipoApuesta(TipoApuestas tipoApuestas);
+        Task<TipoApuesta> DeleteTipoApuesta(int id);
+        Task<TipoApuesta> GetTipoApuesta(int id);
+        Task<IEnumerable<TipoApuesta>> GetTiposApuesta();
+        Task<TipoApuesta> PostTipoApuesta(TipoApuesta tipoApuestas);
+        Task PutTipoApuesta(TipoApuesta tipoApuestas);
         Task<bool> TipoApuestaExists(int id);
     }
 }

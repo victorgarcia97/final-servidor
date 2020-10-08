@@ -16,14 +16,14 @@ namespace WAApuestas.TiposApuestaSpace
             _context = context;
         }
 
-        public async Task<IEnumerable<TipoApuestas>> GetTiposApuesta()
+        public async Task<IEnumerable<TipoApuesta>> GetTiposApuesta()
         {
             return await _context.TiposApuesta
                                     .Include(d => d.Deporte)
                                     .ToListAsync();
         }
 
-        public async Task<TipoApuestas> GetTipoApuesta(int id)
+        public async Task<TipoApuesta> GetTipoApuesta(int id)
         {
             var tipoApuestas = await _context.TiposApuesta
                                                     .Where(tp => tp.Id == id)
@@ -38,13 +38,13 @@ namespace WAApuestas.TiposApuestaSpace
             return tipoApuestas;
         }
 
-        public async Task PutTipoApuesta(TipoApuestas tipoApuestas)
+        public async Task PutTipoApuesta(TipoApuesta tipoApuestas)
         {
             _context.Entry(tipoApuestas).State = EntityState.Modified;
             await _context.SaveChangesAsync();         
         }
 
-        public async Task<TipoApuestas> PostTipoApuesta(TipoApuestas tipoApuestas)
+        public async Task<TipoApuesta> PostTipoApuesta(TipoApuesta tipoApuestas)
         {
             _context.TiposApuesta.Add(tipoApuestas);
             await _context.SaveChangesAsync();
@@ -52,7 +52,7 @@ namespace WAApuestas.TiposApuestaSpace
             return tipoApuestas;
         }
 
-        public async Task<TipoApuestas> DeleteTipoApuesta(int id)
+        public async Task<TipoApuesta> DeleteTipoApuesta(int id)
         {
             var tipoApuestas = await this.GetTipoApuesta(id);
 

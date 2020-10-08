@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using WAApuestas.DeportesSpace;
 using WAApuestas.TiposEventoSpace;
 using WAApuestas.TiposApuestaSpace;
+using WAApuestas.EventosSpace;
 
 namespace WAApuestas
 {
@@ -36,6 +37,9 @@ namespace WAApuestas
 
             services.AddScoped<ITiposApuestaService, TiposApuestaService>();
             services.AddScoped<ITiposApuestaRepository, TiposApuestaRepository>();
+
+            services.AddScoped<IEventosService, EventosService>();
+            services.AddScoped<IEventosRepository, EventosRepository>();
 
 
             services.AddSwaggerGen(c =>

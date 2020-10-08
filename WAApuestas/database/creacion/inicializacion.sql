@@ -38,5 +38,31 @@ CREATE TABLE [dbo].[TiposEvento] (
 GO
 
 
+CREATE TABLE [dbo].[Eventos] (
+    [Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+    [Codigo] VARCHAR(15) NOT NULL,
+    [Nombre] VARCHAR(50) NOT NULL,
+    [TipoEventoId] INT NOT NULL,
+    [Activo] BIT NOT NULL,
+
+    CONSTRAINT FK_Evento_TipoEvento FOREIGN KEY(TipoEventoId)
+    REFERENCES [dbo].[TiposEvento](Id),
+);
+GO
+
+
+CREATE TABLE [dbo].[EventosTiposApuesta] (
+    [EventoId] INT NOT NULL,
+    [TipoApuestaId] INT NOT NULL,
+    PRIMARY KEY(EventoId,TipoApuestaId),
+
+    CONSTRAINT FK_Relacion_Evento FOREIGN KEY(EventoID)
+    REFERENCES [dbo].[Eventos](Id),
+
+    CONSTRAINT FK_Relacion_TipoAPuesta FOREIGN KEY(TipoApuestaId)
+    REFERENCES [dbo].[TiposApuesta](Id),
+);
+GO
+
 
 

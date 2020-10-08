@@ -9,14 +9,14 @@ namespace WAApuestas.TiposApuestaSpace
     public interface ITiposApuestaController
     {
         [HttpDelete("{id}")]
-        Task<ActionResult<TipoApuestas>> DeleteTipoApuesta(int id);
+        Task<ActionResult<TipoApuesta>> DeleteTipoApuesta(int id);
         [HttpGet("{id}")]
-        Task<ActionResult<TipoApuestas>> GetTipoApuesta(int id);
+        Task<ActionResult<TipoApuesta>> GetTipoApuesta(int id);
         [HttpGet]
-        Task<IEnumerable<TipoApuestas>> GetTiposApuesta();
+        Task<IEnumerable<TipoApuesta>> GetTiposApuesta();
         [HttpPost]
-        Task<ActionResult<TipoApuestas>> PostTipoApuesta(TipoApuestas tipoApuestas);
+        Task<ActionResult<TipoApuesta>> PostTipoApuesta(TipoApuesta tipoApuestas);
         [HttpPut("{id}")]
-        Task<IActionResult> PutTipoApuesta(int id, TipoApuestas tipoApuestas);
+        Task<IActionResult> PutTipoApuesta(int id, TipoApuesta tipoApuestas);
     }
 }
