@@ -7,6 +7,7 @@ using WAApuestas.DeportesSpace;
 using WAApuestas.TiposEventoSpace;
 using WAApuestas.TiposApuestaSpace;
 using WAApuestas.EventosSpace;
+using Microsoft.Extensions.Logging;
 
 namespace WAApuestas
 {
@@ -25,9 +26,7 @@ namespace WAApuestas
                     });
             });
 
-            services.AddControllers();
 
-            services.AddDbContext<GestionApuestasDbContext>();
 
             services.AddScoped<IDeportesService, DeportesService>();
             services.AddScoped<IDeportesRepository, DeportesRepository>();
@@ -40,6 +39,10 @@ namespace WAApuestas
 
             services.AddScoped<IEventosService, EventosService>();
             services.AddScoped<IEventosRepository, EventosRepository>();
+
+            services.AddControllers();
+
+            services.AddDbContext<GestionApuestasDbContext>();
 
 
             services.AddSwaggerGen(c =>

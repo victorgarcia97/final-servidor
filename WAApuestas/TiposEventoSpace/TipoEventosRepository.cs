@@ -21,6 +21,8 @@ namespace WAApuestas.TiposEventoSpace
 
         public async Task<IEnumerable<TipoEvento>> GetTiposEvento()
         {
+            _logger.LogInformation($"Tipo Eventos Repository: get correcto");
+
             return await _context.TiposEvento
                                             .Include(d => d.Deporte)
                                             .ToListAsync();
@@ -28,6 +30,8 @@ namespace WAApuestas.TiposEventoSpace
 
         public async Task<TipoEvento> GetTipoEvento(int id)
         {
+            _logger.LogInformation($"Tipo Eventos Repository: get by id {id} busca");
+
             var tipoEvento = await _context.TiposEvento
                                                 .Where(te => te.Id == id)
                                                 .Include(d => d.Deporte)
@@ -35,9 +39,11 @@ namespace WAApuestas.TiposEventoSpace
 
             if (tipoEvento == null)
             {
+                _logger.LogInformation($"Tipo Eventos Repository: get by id {id} no existe");
                 return null;
             }
 
+            _logger.LogInformation($"Tipo Eventos Repository: get by id {id} correcto");
             return tipoEvento;
         }
 
@@ -45,7 +51,7 @@ namespace WAApuestas.TiposEventoSpace
         {
             _context.Entry(tipoEvento).State = EntityState.Modified;  
             await _context.SaveChangesAsync();
-
+            _logger.LogInformation($"Tipo Eventos Repository: put {tipoEvento.Id} correcto");
             return await this.GetTipoEvento(tipoEvento.Id);
         }
 
@@ -53,12 +59,14 @@ namespace WAApuestas.TiposEventoSpace
         {
             _context.TiposEvento.Add(tipoEvento);
             await _context.SaveChangesAsync();
-
+            _logger.LogInformation($"Tipo Eventos Repository: post {tipoEvento.Id} correcto");
             return await this.GetTipoEvento(tipoEvento.Id);
         }
 
         public async Task<TipoEvento> DeleteTipoEvento(int id)
         {
+            _logger.LogInformation($"Tipo Eventos Repository: delete {id} busca");
+
             var tipoEvento = await _context.TiposEvento
                                                  .Where(te => te.Id == id)
                                                  .Include(d => d.Deporte)
@@ -66,12 +74,14 @@ namespace WAApuestas.TiposEventoSpace
 
             if (tipoEvento == null)
             {
+                _logger.LogInformation($"Tipo Eventos Repository: delete {id} no existe");
                 return null;
             }
 
             _context.TiposEvento.Remove(tipoEvento);
             await _context.SaveChangesAsync();
 
+            _logger.LogInformation($"Tipo Eventos Repository: delete {id} correcot");
             return tipoEvento;
         }
 

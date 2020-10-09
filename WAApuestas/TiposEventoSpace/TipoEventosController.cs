@@ -9,7 +9,7 @@ namespace WAApuestas.TiposEventoSpace
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TiposEventoController : ControllerBase
+    public class TiposEventoController : ControllerBase, ITiposEventoController
     {
         private readonly ITiposEventoService _tipoEventosService;
 

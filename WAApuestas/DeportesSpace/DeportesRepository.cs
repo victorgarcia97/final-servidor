@@ -1,8 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using WAApuestas.Models;
 
 namespace WAApuestas.DeportesSpace
@@ -11,7 +10,7 @@ namespace WAApuestas.DeportesSpace
     {
         private readonly GestionApuestasDbContext _context;
 
-        public DeportesRepository(GestionApuestasDbContext context)
+        public DeportesRepository(GestionApuestasDbContext context, ILogger<DeportesRepository>logger)
         {
             _context = context;
         }

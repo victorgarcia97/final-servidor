@@ -40,7 +40,7 @@ GO
 
 CREATE TABLE [dbo].[Eventos] (
     [Id] INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-    [Codigo] VARCHAR(15) NOT NULL,
+    [Codigo] VARCHAR(6) NOT NULL,
     [Nombre] VARCHAR(50) NOT NULL,
     [TipoEventoId] INT NOT NULL,
     [Activo] BIT NOT NULL,
